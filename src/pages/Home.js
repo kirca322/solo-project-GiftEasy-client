@@ -1,30 +1,41 @@
 import React from "react";
+import TitleContainer from "../containers/TitleContainer";
 import styled from "styled-components";
-import dotenv from "dotenv";
-import SigninContainer from "../containers/SigninContainer";
-dotenv.config();
+import IntroduceContainer from "../containers/IntroduceContainer";
+import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
+import * as actions from "../store/actions/SigninActions";
 
-const Container = styled.div`
-  display: flex;
-  flex-flow: cloumn wrap;
+const StyledTitleContainer = styled(TitleContainer)`
+  text-align: center;
 `;
 
-const Home = (props) => {
+let Home = (props) => {
+  props.isLogin && props.history.push("/main");
+
   return (
     <div className="Home">
-      <h1>Gift Easy</h1>
-      <SigninContainer />
-      {/* <Container>
-        <GoogleLogin
-          className="google-login-button"
-          clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
-          buttonText="Google로 로그인하기"
-          onSuccess={() => console.log("성공")}
-          onFailure={() => console.log("실패")}
-        />
-      </Container> */}
+      <StyledTitleContainer />
+      <IntroduceContainer />
     </div>
   );
 };
 
-export default Home;
+const mapStateToProps = (state) => {
+  return {
+    isLogin: state.login.isLogin,
+    error: state.login.error,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onSignin: async (res) => {
+      await dispatch({ type: actions.SIGNIN, payload: res.tokenId });
+    },
+  };
+};
+
+Home = connect(mapStateToProps, mapDispatchToProps)(Home);
+
+export default withRouter(Home);

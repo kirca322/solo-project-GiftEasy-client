@@ -1,28 +1,41 @@
 import React from "react";
 import { GoogleLogin } from "react-google-login";
-// import styled from "styled-components";
+import styled from "styled-components";
 import dotenv from "dotenv";
+import { connect } from "react-redux";
+import * as actions from "../store/actions/SigninActions";
 dotenv.config();
 
-// const Container = styled.div`
-//   display: flex;
-//   flex-flow: cloumn wrap;
-// `;
+const StyledGoogleLogin = styled(GoogleLogin)`
+  font-size: 1.3em !important;
+  margin-top: 20px;
+`;
 
-const GoogleSignin = (props) => {
+let GoogleSignin = (props) => {
   return (
-    <div className="google-signin">
-      {/* <Container> */}
-      <GoogleLogin
-        className="google-login-button"
-        clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
-        buttonText="Google로 로그인하기"
-        onSuccess={props.onSignin}
-        onFailure={(res) => console.log(res.error)}
-      />
-      {/* </Container> */}
-    </div>
+    <StyledGoogleLogin
+      className="google-login-button"
+      clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
+      buttonText="Google로 로그인하기"
+      onSuccess={props.onSignin}
+      onFailure={(res) => console.log(res.error)}
+    />
   );
 };
 
-export default GoogleSignin;
+const mapStateToProps = (state) => {
+  return {
+    isLogin: state.login.isLogin,
+    error: state.login.error,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onSignin: async (res) => {
+      await dispatch({ type: actions.SIGNIN, payload: res.tokenId });
+    },
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(GoogleSignin);
