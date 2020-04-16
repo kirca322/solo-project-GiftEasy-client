@@ -22,14 +22,7 @@ const StyledFooter = styled(Footer)`
   padding: 15px 0;
   text-align: center;
   height: 73px;
-  ${({ theme }) => theme.media.desktop`
-    background-color: blue;
-  `}
-  ${({ theme }) => theme.media.tablet`
-    background-color: yellow;
-  `}
   ${({ theme }) => theme.media.mobile`
-    background-color: red;
     position: relative;
     height: 90px;
   `}
