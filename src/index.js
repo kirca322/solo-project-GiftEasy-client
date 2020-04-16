@@ -5,10 +5,16 @@ import { Provider } from "react-redux";
 import App from "./App";
 import store from "./store/configureStore";
 
+import theme from "./styles/theme";
+import { ThemeProvider } from "./styles/theme-components";
+
 ReactDOM.render(
-  <Provider store={store}>
-    <App />
-  </Provider>,
+  <ThemeProvider theme={theme}>
+    <Provider store={store}>
+      <App />
+    </Provider>
+  </ThemeProvider>,
+
   document.getElementById("root")
 );
 

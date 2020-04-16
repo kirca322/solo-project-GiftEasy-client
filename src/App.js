@@ -4,7 +4,7 @@ import { Home, Detail, Main, Survey } from "./pages";
 import { BrowserRouter } from "react-router-dom";
 import { Layout } from "antd";
 import styled from "styled-components";
-import "./App.css";
+import "./styles/App.css";
 import HeaderContainer from "./containers/HeaderContainer";
 
 const { Header, Content, Footer } = Layout;
@@ -22,6 +22,17 @@ const StyledFooter = styled(Footer)`
   padding: 15px 0;
   text-align: center;
   height: 73px;
+  ${({ theme }) => theme.media.desktop`
+    background-color: blue;
+  `}
+  ${({ theme }) => theme.media.tablet`
+    background-color: yellow;
+  `}
+  ${({ theme }) => theme.media.mobile`
+    background-color: red;
+    position: relative;
+    height: 90px;
+  `}
 `;
 
 function App() {

@@ -4,8 +4,17 @@ import IntroduceEntry from "../components/IntroduceEntry";
 
 const StyledIntroduceContainer = styled.div`
   display: flex;
-  width: 1000px;
+  width: 55%;
   margin: auto;
+  ${({ theme }) => theme.media.desktop`
+    width: 55%;
+  `}
+  ${({ theme }) => theme.media.tablet`
+    width: 75%;
+  `}
+  ${({ theme }) => theme.media.mobile`
+    width: 90%;
+  `}
 `;
 
 const descriptionList = [
