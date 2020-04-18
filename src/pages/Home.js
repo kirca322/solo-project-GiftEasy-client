@@ -11,7 +11,7 @@ const StyledTitleContainer = styled(TitleContainer)`
 `;
 
 let Home = (props) => {
-  props.isLogin && props.history.push("/main");
+  props.isLogin && props.history.push("/main/survey");
 
   return (
     <div className="Home">

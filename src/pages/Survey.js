@@ -1,9 +1,10 @@
 import React from "react";
+import SurveyContainer from "../containers/SurveyContainer";
 
 const Survey = () => {
   return (
     <div className="Survey">
-      <h1>Survey</h1>
+      <SurveyContainer />
     </div>
   );
 };
