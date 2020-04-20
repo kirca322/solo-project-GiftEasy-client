@@ -1,6 +1,8 @@
 import { spawn } from "redux-saga/effects";
-import watchSearch from "./SigninSaga";
+import watchSignin from "./SigninSaga";
+import watchSubmit from "./SurveySubmitSaga";
 
 export default function* rootSaga() {
-  yield spawn(watchSearch);
+  yield spawn(watchSignin);
+  yield spawn(watchSubmit);
 }

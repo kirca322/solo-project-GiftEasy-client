@@ -17,6 +17,6 @@ function* fetchSigninSaga(action) {
   }
 }
 
-export default function* watchSearch() {
+export default function* watchSignin() {
   yield takeEvery(actions.SIGNIN, fetchSigninSaga);
 }

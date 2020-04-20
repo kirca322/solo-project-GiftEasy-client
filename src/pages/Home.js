@@ -12,7 +12,13 @@ const StyledTitleContainer = styled(TitleContainer)`
 
 let Home = (props) => {
   props.isLogin && props.history.push("/main/survey");
-
+  if (props.isLogin) {
+    if (props.isFirst) {
+      props.history.push("/main/survey");
+    } else {
+      props.history.push("/main");
+    }
+  }
   return (
     <div className="Home">
       <StyledTitleContainer />
@@ -24,6 +30,7 @@ let Home = (props) => {
 const mapStateToProps = (state) => {
   return {
     isLogin: state.login.isLogin,
+    isFirst: state.login.isFirst,
     error: state.login.error,
   };
 };

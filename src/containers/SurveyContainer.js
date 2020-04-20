@@ -51,8 +51,8 @@ let SurveyContainer = (props) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onSubmit: async (res) => {
-      await dispatch({ type: actions.SUBMIT, payload: res });
+    onSubmit: async (surveyData) => {
+      await dispatch({ type: actions.SUBMIT, payload: surveyData });
     },
   };
 };

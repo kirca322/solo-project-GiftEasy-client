@@ -2,6 +2,7 @@ import * as actions from "../actions/SigninActions";
 
 const initialState = {
   isLogin: false,
+  ifFirst: null,
 };
 
 export const reducer = (state = initialState, action) => {
@@ -15,6 +16,7 @@ export const reducer = (state = initialState, action) => {
       return {
         ...state,
         isLogin: true,
+        isFirst: action.data.isFirst,
       };
     case actions.SIGNIN_FAIL:
       return {
