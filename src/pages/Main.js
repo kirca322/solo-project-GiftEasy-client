@@ -1,9 +1,12 @@
 import React from "react";
+import OptionContainer from "../containers/OptionContainer";
+import GiftListContainer from "../containers/GiftListContainer";
 
 const Main = () => {
   return (
     <div className="Main">
-      <h1>Main</h1>
+      <OptionContainer />
+      <GiftListContainer />
     </div>
   );
 };
