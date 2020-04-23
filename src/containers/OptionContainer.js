@@ -1,12 +1,13 @@
 import React from "react";
 import styled from "styled-components";
-// import HeaderContent from "../components/HeaderContent";
 import IsMan from "../components/IsMan";
 import Age from "../components/Age";
+import { connect } from "react-redux";
+import * as actions from "../store/actions/OptionSelectActions";
 
 const StyledOptionContainer = styled.div`
   text-align: center;
-  width: 80%;
+  width: 60%;
   margin: auto;
   margin-top: 80px;
   display: flex;
@@ -17,10 +18,26 @@ const StyledOptionContainer = styled.div`
 const OptionContainer = (props) => {
   return (
     <StyledOptionContainer>
-      <IsMan />
-      <Age />
+      <IsMan isMan={props.isMan} />
+      <Age age={props.age} />
     </StyledOptionContainer>
   );
 };
 
-export default OptionContainer;
+const mapStateToProps = (state) => {
+  return {
+    isMan: state.select.isMan,
+    age: state.select.age,
+    error: state.login.error,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onSelect: async (res) => {
+      await dispatch({ type: actions.SELECT, payload: res });
+    },
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(OptionContainer);
