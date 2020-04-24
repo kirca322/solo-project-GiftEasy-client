@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import GiftListEntry from "../components/GiftListEntry";
+import { connect } from "react-redux";
 
 const StyledGiftListContainer = styled.div`
   width: 60%;
@@ -10,27 +11,23 @@ const StyledGiftListContainer = styled.div`
   height: 45vh;
   padding: 5px;
 `;
-const fakeData = [
-  "향수",
-  "가방",
-  "시계",
-  "목걸이",
-  "이어폰",
-  "옷",
-  "자동차",
-  "신발",
-  "케이크",
-  "화장품",
-];
 
-const GiftListContainer = () => {
+const GiftListContainer = (props) => {
   return (
     <StyledGiftListContainer>
-      {fakeData.map((x) => (
-        <GiftListEntry giftName={`${fakeData.indexOf(x) + 1}. ${x}`} />
+      {props.giftList.map((x) => (
+        <GiftListEntry
+          giftName={`${props.giftList.indexOf(x) + 1}. ${x.name}`}
+        />
       ))}
     </StyledGiftListContainer>
   );
 };
 
-export default GiftListContainer;
+const mapStateToProps = (state) => {
+  return {
+    giftList: state.select.giftList,
+  };
+};
+
+export default connect(mapStateToProps, null)(GiftListContainer);

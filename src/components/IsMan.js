@@ -11,6 +11,7 @@ const StyledButton = styled.button`
   width: 20%;
   margin-top: 11px;
   font-size: 1.2em;
+  background-color: ${(props) => (props.manClicked ? "gray" : "none")};
 `;
 
 const StyledH1 = styled.h1`
@@ -18,12 +19,28 @@ const StyledH1 = styled.h1`
   margin-top: 8px;
   margin-right: 45px;
 `;
-const isMan = () => {
+const isMan = (props) => {
+  let manClicked;
+  if (props.isMan === "man") {
+    manClicked = true;
+  } else {
+    manClicked = false;
+  }
   return (
     <StyledIsMan>
       <StyledH1>성별</StyledH1>
-      <StyledButton>남자</StyledButton>
-      <StyledButton>여자</StyledButton>
+      <StyledButton
+        manClicked={manClicked}
+        onClick={() => props.setIsMan("man")}
+      >
+        남자
+      </StyledButton>
+      <StyledButton
+        manClicked={!manClicked}
+        onClick={() => props.setIsMan("woman")}
+      >
+        여자
+      </StyledButton>
     </StyledIsMan>
   );
 };

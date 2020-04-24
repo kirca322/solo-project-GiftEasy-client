@@ -11,11 +11,13 @@ function* fetchOptionSelectSaga(action) {
     const headerParams = {
       Authorization: localStorage.getItem("token"),
     };
-    const { data } = yield call([axios, "get"], `${url}/${isMan}/${age}`, {
-      headers: headerParams,
-    });
-    data.isMan = isMan;
-    data.age = age;
+    const { data } = yield call(
+      [axios, "get"],
+      `${url}/api/gift/list/${isMan}/${age}`,
+      {
+        headers: headerParams,
+      }
+    );
     yield put(actions.selectSuccess(data));
   } catch (error) {
     yield put(actions.selectFail(error.response));

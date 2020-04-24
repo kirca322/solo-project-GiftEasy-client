@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import IsMan from "../components/IsMan";
 import Age from "../components/Age";
@@ -16,10 +16,15 @@ const StyledOptionContainer = styled.div`
 `;
 
 const OptionContainer = (props) => {
+  const [isMan, setIsMan] = useState("man");
+  const [age, setAge] = useState("10");
+  useEffect(() => {
+    props.onSelect({ isMan: isMan, age: age });
+  }, [isMan, age]);
   return (
     <StyledOptionContainer>
-      <IsMan isMan={props.isMan} />
-      <Age age={props.age} />
+      <IsMan isMan={isMan} setIsMan={setIsMan} />
+      <Age age={age} setAge={setAge} />
     </StyledOptionContainer>
   );
 };
