@@ -1,24 +1,24 @@
-export const SELECT = "SELECT";
-export const SELECT_SUCCESS = "SELECT_SUCCESS";
-export const SELECT_FAIL = "SELECT_FAIL";
+export const OPTION_SELECT = "OPTION_SELECT";
+export const OPTION_SELECT_SUCCESS = "OPTION_SELECT_SUCCESS";
+export const OPTION_SELECT_FAIL = "OPTION_SELECT_FAIL";
 
-export function select(payload) {
+export function optionSelect(payload) {
   return {
-    type: SELECT,
+    type: OPTION_SELECT,
     payload,
   };
 }
 
-export function selectSuccess(data) {
+export function optionSelectSuccess(data) {
   return {
-    type: SELECT_SUCCESS,
+    type: OPTION_SELECT_SUCCESS,
     data,
   };
 }
 
-export function selectFail(error) {
+export function optionSelectFail(error) {
   return {
-    type: SELECT_FAIL,
+    type: OPTION_SELECT_FAIL,
     error,
   };
 }

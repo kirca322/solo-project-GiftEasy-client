@@ -31,8 +31,8 @@ const OptionContainer = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    isMan: state.select.isMan,
-    age: state.select.age,
+    isMan: state.optionSelect.isMan,
+    age: state.optionSelect.age,
     error: state.login.error,
   };
 };
@@ -40,7 +40,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     onSelect: async (res) => {
-      await dispatch({ type: actions.SELECT, payload: res });
+      await dispatch({ type: actions.OPTION_SELECT, payload: res });
     },
   };
 };

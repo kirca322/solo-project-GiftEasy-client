@@ -18,12 +18,12 @@ function* fetchOptionSelectSaga(action) {
         headers: headerParams,
       }
     );
-    yield put(actions.selectSuccess(data));
+    yield put(actions.optionSelectSuccess(data));
   } catch (error) {
-    yield put(actions.selectFail(error.response));
+    yield put(actions.optionSelectFail(error.response));
   }
 }
 
 export default function* watchOptionSelect() {
-  yield takeEvery(actions.SELECT, fetchOptionSelectSaga);
+  yield takeEvery(actions.OPTION_SELECT, fetchOptionSelectSaga);
 }

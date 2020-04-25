@@ -17,7 +17,8 @@ const GiftListContainer = (props) => {
     <StyledGiftListContainer>
       {props.giftList.map((x) => (
         <GiftListEntry
-          giftName={`${props.giftList.indexOf(x) + 1}. ${x.name}`}
+          index={props.giftList.indexOf(x) + 1}
+          giftListEntry={x}
         />
       ))}
     </StyledGiftListContainer>
@@ -26,7 +27,7 @@ const GiftListContainer = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    giftList: state.select.giftList,
+    giftList: state.optionSelect.giftList,
   };
 };
 
